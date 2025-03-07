@@ -1,11 +1,13 @@
 package com.usermanager.api.service.impl;
 
 import com.usermanager.api.domain.User;
+import com.usermanager.api.domain.UserRole;
 import com.usermanager.api.domain.dto.UserRequestDTO;
 import com.usermanager.api.domain.dto.UserResponseDTO;
 import com.usermanager.api.repository.UserRepository;
 import com.usermanager.api.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -19,14 +21,17 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
-    public void register(UserRequestDTO userRequestDTO) {
+    public void register(UserRequestDTO dto) {
         User user = new User();
-        user.setName(userRequestDTO.name());
-        setUserBirthDate(user, userRequestDTO.birthDate());
-        user.setEmail(userRequestDTO.email());
-        user.setPassword(userRequestDTO.password());
+        user.setName(dto.name());
+        setUserBirthDate(user, dto.birthDate());
+        user.setEmail(dto.email());
+        user.setPassword(passwordEncoder.encode(dto.password()));
+        user.setRole(dto.role() != null ? dto.role() : UserRole.USER);
         userRepository.save(user);
     }
 

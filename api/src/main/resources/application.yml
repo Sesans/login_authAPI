@@ -12,5 +12,12 @@ spring:
 logging:
   level:
     org:
+      springframework:
+        security: debug
       hibernate:
         type: trace
+web:
+  cors:
+    allowed-origins: "*"
+    allowed-methods: GET, POST
+    max-age: 3600
