@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -28,7 +25,7 @@ public class UserServiceImpl implements UserService {
     public void register(UserRequestDTO dto) {
         User user = new User();
         user.setName(dto.name());
-        setUserBirthDate(user, dto.birthDate());
+        user.setBirthDate(dto.birthDate());
         user.setEmail(dto.email());
         user.setPassword(passwordEncoder.encode(dto.password()));
         user.setRole(dto.role() != null ? dto.role() : UserRole.USER);
@@ -43,7 +40,8 @@ public class UserServiceImpl implements UserService {
                         user.getId(),
                         user.getName(),
                         user.getBirthDate(),
-                        user.getEmail()
+                        user.getEmail(),
+                        user.getRole()
                 ))
                 .collect(Collectors.toList());
     }
@@ -51,12 +49,5 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteByID(UUID uuid) {
         userRepository.deleteById(uuid);
-    }
-
-    public void setUserBirthDate(User user, long timestamp) {
-        LocalDate birthDate = Instant.ofEpochMilli(timestamp)
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-        user.setBirthDate(birthDate);
     }
 }
