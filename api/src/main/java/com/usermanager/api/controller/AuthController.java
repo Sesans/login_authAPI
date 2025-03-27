@@ -1,7 +1,7 @@
 package com.usermanager.api.controller;
 
-import com.usermanager.api.domain.dto.AuthResponseDTO;
-import com.usermanager.api.domain.dto.AuthenticationDTO;
+import com.usermanager.api.dto.AuthResponseDTO;
+import com.usermanager.api.dto.AuthenticationDTO;
 import com.usermanager.api.service.AuthService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

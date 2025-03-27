@@ -1,4 +1,4 @@
-package com.usermanager.api.domain.dto;
+package com.usermanager.api.dto;
 
 import com.usermanager.api.domain.UserRole;
 import jakarta.validation.constraints.Email;

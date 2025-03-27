@@ -1,7 +1,7 @@
 package com.usermanager.api.controller;
 
-import com.usermanager.api.domain.dto.UserRequestDTO;
-import com.usermanager.api.domain.dto.UserResponseDTO;
+import com.usermanager.api.dto.UserRequestDTO;
+import com.usermanager.api.dto.UserResponseDTO;
 import com.usermanager.api.service.UserService;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;

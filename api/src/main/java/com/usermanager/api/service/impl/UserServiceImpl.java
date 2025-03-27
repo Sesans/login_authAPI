@@ -2,10 +2,12 @@ package com.usermanager.api.service.impl;
 
 import com.usermanager.api.domain.User;
 import com.usermanager.api.domain.UserRole;
-import com.usermanager.api.domain.dto.UserRequestDTO;
-import com.usermanager.api.domain.dto.UserResponseDTO;
+import com.usermanager.api.dto.UserRequestDTO;
+import com.usermanager.api.dto.UserResponseDTO;
+import com.usermanager.api.producer.UserProducer;
 import com.usermanager.api.repository.UserRepository;
 import com.usermanager.api.service.UserService;
+import org.springframework.amqp.AmqpException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +24,8 @@ public class UserServiceImpl implements UserService {
     UserRepository userRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    UserProducer userProducer;
 
     @Override
     public String register(UserRequestDTO dto) {
@@ -34,6 +38,11 @@ public class UserServiceImpl implements UserService {
             newUser.setPassword(passwordEncoder.encode(dto.password()));
             newUser.setRole(dto.role() != null ? dto.role() : UserRole.USER);
             userRepository.save(newUser);
+            try{
+                userProducer.publishRegistrationEmail(newUser);
+            }catch (AmqpException exception){
+                throw new AmqpException(exception);
+            }
             return "User created successfully!";
         }else{
             return "User already exists!";

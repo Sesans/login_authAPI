@@ -1,7 +1,7 @@
 package com.usermanager.api.service.impl;
 
 import com.usermanager.api.domain.User;
-import com.usermanager.api.domain.dto.AuthenticationDTO;
+import com.usermanager.api.dto.AuthenticationDTO;
 import com.usermanager.api.security.TokenService;
 import com.usermanager.api.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class AuthServiceImpl implements AuthService {
-
     @Autowired
     AuthenticationManager authenticationManager;
     @Autowired

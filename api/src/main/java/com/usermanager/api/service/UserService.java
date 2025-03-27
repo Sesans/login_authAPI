@@ -1,7 +1,7 @@
 package com.usermanager.api.service;
 
-import com.usermanager.api.domain.dto.UserRequestDTO;
-import com.usermanager.api.domain.dto.UserResponseDTO;
+import com.usermanager.api.dto.UserRequestDTO;
+import com.usermanager.api.dto.UserResponseDTO;
 
 import java.util.List;
 import java.util.UUID;
