@@ -2,8 +2,8 @@ package com.usermanager.api.service.impl;
 
 import com.usermanager.api.domain.User;
 import com.usermanager.api.domain.UserRole;
-import com.usermanager.api.domain.dto.UserRequestDTO;
-import com.usermanager.api.domain.dto.UserResponseDTO;
+import com.usermanager.api.dto.UserRequestDTO;
+import com.usermanager.api.dto.UserResponseDTO;
 import com.usermanager.api.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -39,8 +39,8 @@ class UserServiceImplTest {
     void setUp() {
         userId = UUID.randomUUID();
 
-        userRequestDTO = new UserRequestDTO("lopes", LocalDate.of(1999, 10, 10),
-                        "lopes@gmail.com", "pass@worD123", UserRole.USER);
+        userRequestDTO = new UserRequestDTO("test", LocalDate.of(1999, 10, 10),
+                        "test@gmail.com", "pass@worD123", UserRole.USER);
 
         user = new User();
         user.setId(userId);
