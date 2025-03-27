@@ -1,6 +1,8 @@
 # User management API
 
-This project is an REST API built using Java, Spring, PostgreSQL. Spring Security and JWT were used for authentication control.
+This project is a REST API built on Java, Spring, PostgreSQL. Spring Security and JWT were used for authentication control. RabbitMQ broker configured for asynchronous connection.
+
+🎯 Objective: Study microservices design patterns, connection, lifecycle and security.
 
 ## Technologies
 
@@ -11,13 +13,15 @@ This project is an REST API built using Java, Spring, PostgreSQL. Spring Securit
 - PostgreSQL
 - JPA/Hibernate
 - Docker (containerization)
+- RabbitMQ
 
 ## Features
 
 - User registration and authentication
 - User update
 - Role-based access control
-- CRUD operations (manager user)
+- CRUD operations
+- Send e-mails to users
 
 ## How to run
 
@@ -61,4 +65,4 @@ The API will be accessible at `http://localhost:8080`
 - `POST /auth/login`- Login with user credentials (Email and password)
 
 ### Manager role access
-- `DELETE /delete/{uuid}` - Delete an user by the UUID
+- `DELETE users/delete/{uuid}` - Delete an user by the UUID
