@@ -4,6 +4,7 @@ import com.usermanager.api.domain.User;
 import com.usermanager.api.domain.UserRole;
 import com.usermanager.api.dto.UserRequestDTO;
 import com.usermanager.api.dto.UserResponseDTO;
+import com.usermanager.api.producer.UserProducer;
 import com.usermanager.api.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,6 +29,8 @@ class UserServiceImplTest {
     UserRepository userRepository;
     @Mock
     PasswordEncoder passwordEncoder;
+    @Mock
+    UserProducer userProducer;
     @InjectMocks
     private UserServiceImpl userService;
 
