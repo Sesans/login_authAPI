@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Validated
 @RequestMapping("/auth")
 public class AuthController {

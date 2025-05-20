@@ -35,7 +35,7 @@ public class SecurityFilter extends OncePerRequestFilter {
         if(token != null){
             try{
                 DecodedJWT decodedJWT = tokenService.validateAndDecodeToken(token);
-                String login = decodedJWT.getSubject();
+                String login = decodedJWT.getClaim("email").asString();
                 String role = decodedJWT.getClaim("role").asString();
 
                 UserDetails user = userRepository.findByEmail(login).orElseThrow(() -> new UsernameNotFoundException("User not found with this email"));
