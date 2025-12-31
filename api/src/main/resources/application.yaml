@@ -13,7 +13,7 @@ spring:
       properties:
         hibernate.format_sql: true
   rabbitmq:
-    addresses: amqps://enknznde:EpCcfqWnbwdrwrLcAzjRCq7zZ_PRN7_E@woodpecker.rmq.cloudamqp.com/enknznde
+    addresses: ${APP_URL}
 logging:
   level:
     org:
@@ -30,3 +30,21 @@ api:
     token: ${JWT_SECRET:my-secret}
 aws:
   region: sa-east-1
+
+management:
+  metrics:
+    tags:
+      service: ${spring.application.name}
+  server:
+    port: 9090
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: 'health,prometheus'
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    prometheus:
+      enabled: true
