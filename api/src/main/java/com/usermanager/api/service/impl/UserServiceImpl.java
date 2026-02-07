@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService {
             newUser.setBirthDate(dto.birthDate());
             newUser.setEmail(dto.email());
             newUser.setPassword(passwordEncoder.encode(dto.password()));
-            newUser.setRole(dto.role() != null ? dto.role() : UserRole.USER);
+            newUser.setRole(dto.role());
             userRepository.save(newUser);
             try{
                 userProducer.publishRegistrationEmail(newUser);
